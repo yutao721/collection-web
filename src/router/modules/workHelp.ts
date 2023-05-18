@@ -7,7 +7,7 @@ export default {
   redirect: "/workHelp/index",
   meta: {
     icon: "Monitor",
-    title: "走查助手",
+    title: "测试助手",
     rank: 10
   },
   children: [
@@ -16,7 +16,7 @@ export default {
       name: "WorkHelpIndex",
       component: () => import("@/views/workHelp/index.vue"),
       meta: {
-        title: "走查助手"
+        title: "测试助手"
       }
     }
   ]

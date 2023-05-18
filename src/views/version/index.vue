@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from "vue";
-import Card from "./components/Card.vue";
 import { deleteVersion, getVersionList } from "@/api/version";
 import { message } from "@/utils/message";
-import { ElMessageBox } from "element-plus";
 import dialogForm from "./components/DialogForm.vue";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import Search from "@iconify-icons/ep/search";
 import AddFill from "@iconify-icons/ri/add-circle-line";
+import dayjs from "dayjs";
 
 const INITIAL_DATA = {
   name: "4.6.2版本",
@@ -86,9 +85,21 @@ onMounted(() => {
         <el-table-column prop="description" label="版本描述" />
         <el-table-column prop="isDone" label="是否完结" />
         <el-table-column prop="isOverdue" label="是否逾期" />
-        <el-table-column prop="startTime" label="开始时间" />
-        <el-table-column prop="testTime" label="提测时间" />
-        <el-table-column prop="completeTime" label="上线时间" />
+        <el-table-column prop="startTime" label="开始时间">
+          <template #default="scope">
+            {{ dayjs(scope.row.startTime).format("YYYY-MM-DD") }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="testTime" label="提测时间">
+          <template #default="scope">
+            {{ dayjs(scope.row.testTime).format("YYYY-MM-DD") }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="completeTime" label="上线时间">
+          <template #default="scope">
+            {{ dayjs(scope.row.completeTime).format("YYYY-MM-DD") }}
+          </template>
+        </el-table-column>
         <el-table-column>
           <template #default="scope">
             <el-button

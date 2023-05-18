@@ -7,8 +7,8 @@ export default {
   redirect: "/version/index",
   meta: {
     icon: "Monitor",
-    title: "版本控制",
-    rank: 10
+    title: "需求用例",
+    rank: 9
   },
   children: [
     {
@@ -16,7 +16,7 @@ export default {
       name: "VersionIndex",
       component: () => import("@/views/version/index.vue"),
       meta: {
-        title: "版本控制"
+        title: "需求用例"
       }
     }
   ]

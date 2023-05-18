@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from "vue";
-import type { TabsPaneContext } from "element-plus";
 import Card from "./components/Card.vue";
 import { deleteCollection, getCollectionList } from "@/api/collection";
 import { message } from "@/utils/message";
@@ -122,7 +121,7 @@ const handleSwitchTab = async (type: number | string) => {
       <el-input
         style="width: 300px"
         v-model="searchValue"
-        placeholder="请输入产品名称"
+        placeholder="请输入名称"
         clearable
       >
         <template #suffix>
