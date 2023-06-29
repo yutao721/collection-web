@@ -6,7 +6,7 @@ export default {
   component: Layout,
   redirect: "/host/dev",
   meta: {
-    icon: "Monitor",
+    icon: "informationLine",
     title: "域名集合",
     rank: 10
   },

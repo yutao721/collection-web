@@ -46,16 +46,25 @@ const cardLogoClass = computed(() => [
   { "list-card-item_detail--logo__disabled": !props.product.isSetup }
 ]);
 
-const handleOpen = async () => {
-  if (props.product.openUrl) {
-    window.open(props.product.openUrl);
+const handleOpen = async e => {
+  console.log(e);
+  const url = props.product.openUrl;
+  if (url) {
+    if (url.startsWith("https://") || url.startsWith("http://")) {
+      window.open(props.product.openUrl, "_blank");
+    } else {
+      window.open("http://" + props.product.openUrl, "_blank");
+    }
   }
 };
 </script>
 
 <template>
   <div :class="cardClass">
-    <div class="list-card-item_detail bg-bg_color" @click="handleOpen">
+    <div
+      class="list-card-item_detail bg-bg_color"
+      @click.capture="handleOpen($event)"
+    >
       <el-row justify="space-between">
         <div :class="cardLogoClass">
           <span v-if="product.type == 1">测试</span>
@@ -70,7 +79,7 @@ const handleOpen = async () => {
           >
             {{ product.isSetup ? "已启用" : "已停用" }}
           </el-tag>
-          <el-dropdown trigger="click">
+          <el-dropdown>
             <IconifyIconOffline :icon="More2Fill" class="text-[24px]" />
             <template #dropdown>
               <el-dropdown-menu :disabled="!product.isSetup">
@@ -91,12 +100,16 @@ const handleOpen = async () => {
       <p class="list-card-item_detail--desc text-text_color_regular">
         {{ product.description }}
       </p>
+      <span class="content">
+        {{ product.content }}
+      </span>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .list-card-item {
+  height: 270px;
   display: flex;
   flex-direction: column;
   margin-bottom: 12px;
@@ -150,6 +163,7 @@ const handleOpen = async () => {
       -webkit-box-orient: vertical;
       margin-bottom: 24px;
       height: 40px;
+      word-break: break-all;
     }
   }
 
@@ -162,6 +176,13 @@ const handleOpen = async () => {
     .list-card-item_detail--operation--tag {
       color: #bababa;
     }
+  }
+
+  .content {
+    color: #333;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
   }
 }
 </style>

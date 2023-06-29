@@ -9,17 +9,17 @@ import AddFill from "@iconify-icons/ri/add-circle-line";
 import dayjs from "dayjs";
 
 const INITIAL_DATA = {
-  name: "4.6.2版本",
-  description: "4.6.2版本描述",
-  mark: "4.6.2版本备注",
-  uiSrc: "4.6.2版本",
-  testCaseSrc: "4.6.2版本描述",
+  name: "",
+  description: "",
+  mark: "",
+  uiSrc: "",
+  testCaseSrc: "",
   productSrc: "4.6.2版本描述",
   isDone: 1,
   isOverdue: 0,
-  startTime: "2022-02-03 12:00:00",
-  testTime: "2022-02-03 12:00:00",
-  completeTime: "2022-02-03 12:00:00"
+  startTime: "",
+  testTime: "",
+  completeTime: ""
 };
 
 const tableData = ref([]);
@@ -82,9 +82,21 @@ onMounted(() => {
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="id" label="id" width="60" />
         <el-table-column prop="name" label="版本名称" />
-        <el-table-column prop="description" label="版本描述" />
-        <el-table-column prop="isDone" label="是否完结" />
-        <el-table-column prop="isOverdue" label="是否逾期" />
+        <el-table-column
+          prop="description"
+          label="版本描述"
+          show-overflow-tooltip
+        />
+        <el-table-column prop="isDone" label="是否完结">
+          <template #default="scope">
+            {{ scope.row.isDone ? "是" : "否" }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="isOverdue" label="是否逾期">
+          <template #default="scope">
+            {{ scope.row.isOverdue ? "是" : "否" }}
+          </template>
+        </el-table-column>
         <el-table-column prop="startTime" label="开始时间">
           <template #default="scope">
             {{ dayjs(scope.row.startTime).format("YYYY-MM-DD") }}
@@ -100,7 +112,7 @@ onMounted(() => {
             {{ dayjs(scope.row.completeTime).format("YYYY-MM-DD") }}
           </template>
         </el-table-column>
-        <el-table-column>
+        <el-table-column label="操作">
           <template #default="scope">
             <el-button
               type="primary"
@@ -122,6 +134,7 @@ onMounted(() => {
     </div>
     <dialogForm
       v-model:visible="formDialogVisible"
+      @complete="getList"
       :data="formData"
       :isEdit="isEdit"
       :id="formDataId"

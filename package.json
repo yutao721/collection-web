@@ -107,6 +107,7 @@
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-remove-console": "^2.1.0",
     "vite-svg-loader": "^4.0.0",
+    "vue-clipboard3": "^2.0.0",
     "vue-eslint-parser": "^9.1.0",
     "vue-tsc": "^1.2.0"
   },

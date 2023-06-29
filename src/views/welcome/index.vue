@@ -11,14 +11,25 @@ defineOptions({
 });
 
 const questList = ref<Issue.queryIssue[]>([]);
+const issueDetail = ref({
+  total: 0,
+  done: 0,
+  unDone: 0
+});
 
 const getList = async () => {
   const { data } = await Issue.getIssueList();
   questList.value = data;
 };
 
+const getIssueDetail = async () => {
+  const { data } = await Issue.getIssueDetail();
+  issueDetail.value = data;
+};
+
 onMounted(() => {
   getList();
+  getIssueDetail();
 });
 </script>
 
@@ -55,6 +66,28 @@ onMounted(() => {
               <h4>线上版本数据</h4>
             </div>
           </template>
+          <div class="items">
+            <div class="item">
+              <span class="item-num">v4.7.10</span>
+              <span class="item-text">移动端版本</span>
+            </div>
+            <div class="item">
+              <span class="item-num">v2.4</span>
+              <span class="item-text">商家端版本</span>
+            </div>
+            <div class="item">
+              <span class="item-num">{{ issueDetail.total }}</span>
+              <span class="item-text">反馈问题数</span>
+            </div>
+            <div class="item">
+              <span class="item-num">{{ issueDetail.done }}</span>
+              <span class="item-text">已解决</span>
+            </div>
+            <div class="item">
+              <span class="item-num">{{ issueDetail.unDone }}</span>
+              <span class="item-text">未解决</span>
+            </div>
+          </div>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -64,6 +97,20 @@ onMounted(() => {
               <h4>测试版本数据</h4>
             </div>
           </template>
+          <div class="items">
+            <div class="item">
+              <span class="item-num">v4.8.0</span>
+              <span class="item-text">当前测试版本</span>
+            </div>
+            <div class="item">
+              <span class="item-num">06-16</span>
+              <span class="item-text">提测时间</span>
+            </div>
+            <div class="item">
+              <span class="item-num">06-29</span>
+              <span class="item-text">反馈问题数</span>
+            </div>
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -85,5 +132,22 @@ onMounted(() => {
 <style lang="scss" scoped>
 .el-row {
   margin-bottom: 20px;
+}
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  .item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &-num {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #000;
+      font-weight: 600;
+    }
+  }
 }
 </style>

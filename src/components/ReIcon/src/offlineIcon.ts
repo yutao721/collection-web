@@ -9,8 +9,15 @@ import HomeFilled from "@iconify-icons/ep/home-filled";
 import InformationLine from "@iconify-icons/ri/information-line";
 import Lollipop from "@iconify-icons/ep/lollipop";
 import Monitor from "@iconify-icons/ep/monitor";
+import Odometer from "@iconify-icons/ep/odometer";
+import DataLine from "@iconify-icons/ep/data-line";
+import Question from "@iconify-icons/ep/question-filled";
 
 addIcon("homeFilled", HomeFilled);
 addIcon("informationLine", InformationLine);
 addIcon("lollipop", Lollipop);
 addIcon("Monitor", Monitor);
+addIcon("Odometer", Odometer);
+addIcon("Odometer", Odometer);
+addIcon("DataLine", DataLine);
+addIcon("Question", Question);

@@ -6,7 +6,7 @@ export default {
   component: Layout,
   redirect: "/workHelp/index",
   meta: {
-    icon: "Monitor",
+    icon: "lollipop",
     title: "测试助手",
     rank: 10
   },

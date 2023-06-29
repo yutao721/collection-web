@@ -14,12 +14,17 @@ export interface queryIssue {
 
 type Result = {
   success: boolean;
-  data?: Array<queryIssue>;
+  data?: any;
 };
 
 /** 获取列表 */
 export const getIssueList = (data?: object) => {
   return http.request<Result>("get", "/issue", { data });
+};
+
+// 查详情
+export const getIssueDetail = (data?: object) => {
+  return http.request<Result>("get", `/issue/issueDetail`, { data });
 };
 
 // 创建
@@ -40,4 +45,9 @@ export const deleteIssue = (id: number) => {
 // 查详情
 export const queryIssue = (id: number) => {
   return http.request("get", `/issue/${id}`);
+};
+
+// 修改status
+export const modifyIssueStatus = (id: number, data?: object) => {
+  return http.request("post", `/issue/modifyStatus/${id}`, { data });
 };

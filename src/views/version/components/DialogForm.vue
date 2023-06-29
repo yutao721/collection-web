@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import { message } from "@/utils/message";
 import { FormInstance } from "element-plus";
-import { patchVersion, postVersion } from "@/api/version";
+import { patchVersion, postVersion, queryVersion } from "@/api/version";
 
 const props = defineProps({
   // 弹窗显示
@@ -87,6 +87,15 @@ watch(
   () => props.data,
   val => {
     formData.value = val;
+  }
+);
+
+watch(
+  () => props.id,
+  async val => {
+    // @ts-ignore
+    const { data } = await queryVersion(val);
+    formData.value = data;
   }
 );
 

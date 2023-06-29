@@ -6,40 +6,40 @@ import { ref } from "vue";
   <div class="fun-container">
     <ul class="flex-ac">
       <li class="item flex-c">
-        <span class="item-icon">
+        <router-link class="item-icon" to="/question/index">
           <IconifyIconOffline
-            icon="homeFilled"
-            style="width: 100%; height: 100%; color: blueviolet"
+            icon="Question"
+            style="width: 100%; height: 100%; color: rgb(11, 164, 181)"
           />
-        </span>
+        </router-link>
         <span class="item-text">问题反馈</span>
       </li>
       <li class="item flex-c">
-        <span class="item-icon">
+        <router-link class="item-icon" to="/host/dev">
           <IconifyIconOffline
             icon="informationLine"
-            style="width: 100%; height: 100%; color: blueviolet"
+            style="width: 100%; height: 100%; color: rgb(11, 164, 181)"
           />
-        </span>
+        </router-link>
         <span class="item-text">域名集合</span>
       </li>
       <li class="item flex-c">
-        <span class="item-icon">
+        <router-link class="item-icon" to="/workHelp/index">
           <IconifyIconOffline
             icon="lollipop"
-            style="width: 100%; height: 100%; color: blueviolet"
+            style="width: 100%; height: 100%; color: rgb(11, 164, 181)"
           />
-        </span>
-        <span class="item-text">数据创建</span>
+        </router-link>
+        <span class="item-text">测试助手</span>
       </li>
       <li class="item flex-c">
-        <span class="item-icon">
+        <router-link class="item-icon" to="/dataSource/index">
           <IconifyIconOffline
-            icon="Monitor"
-            style="width: 100%; height: 100%; color: blueviolet"
+            icon="DataLine"
+            style="width: 100%; height: 100%; color: rgb(11, 164, 181)"
           />
-        </span>
-        <span class="item-text">安装管理</span>
+        </router-link>
+        <span class="item-text">数据创建</span>
       </li>
     </ul>
   </div>
