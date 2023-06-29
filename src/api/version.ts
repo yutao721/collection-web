@@ -7,7 +7,7 @@ type Result = {
 
 /** 获取列表 */
 export const getVersionList = (data?: object) => {
-  return http.request<Result>("get", "/version", { data });
+  return http.request<Result>("get", "/version", { params: data });
 };
 
 // 创建

@@ -35,7 +35,8 @@ const handleOpen = () => {
 };
 
 const getList = async () => {
-  const { data } = await getVersionList();
+  console.log(searchValue.value);
+  const { data } = await getVersionList({ name: searchValue.value });
   tableData.value = data;
 };
 
@@ -51,6 +52,14 @@ const editRow = async ({ id }) => {
   isEdit.value = true;
 };
 
+const formatTime = time => {
+  if (time) {
+    return dayjs(time).format("YYYY-MM-DD");
+  } else {
+    return "/";
+  }
+};
+
 onMounted(() => {
   getList();
 });
@@ -62,21 +71,24 @@ onMounted(() => {
       <el-button :icon="useRenderIcon(AddFill)" @click="handleOpen()">
         新建
       </el-button>
-      <el-input
-        style="width: 300px"
-        v-model="searchValue"
-        placeholder="请输入"
-        clearable
-      >
-        <template #suffix>
-          <el-icon class="el-input__icon">
-            <IconifyIconOffline
-              v-show="searchValue.length === 0"
-              :icon="Search"
-            />
-          </el-icon>
-        </template>
-      </el-input>
+      <div>
+        <el-input
+          style="width: 300px"
+          v-model="searchValue"
+          placeholder="请输入"
+          clearable
+        >
+          <template #suffix>
+            <el-icon class="el-input__icon">
+              <IconifyIconOffline
+                v-show="searchValue.length === 0"
+                :icon="Search"
+              />
+            </el-icon>
+          </template>
+        </el-input>
+        <el-button type="primary" class="ml-2" @click="getList">搜索</el-button>
+      </div>
     </div>
     <div>
       <el-table :data="tableData" style="width: 100%">
@@ -87,6 +99,7 @@ onMounted(() => {
           label="版本描述"
           show-overflow-tooltip
         />
+        <el-table-column prop="mark" label="备注" show-overflow-tooltip />
         <el-table-column prop="isDone" label="是否完结">
           <template #default="scope">
             {{ scope.row.isDone ? "是" : "否" }}
@@ -99,17 +112,17 @@ onMounted(() => {
         </el-table-column>
         <el-table-column prop="startTime" label="开始时间">
           <template #default="scope">
-            {{ dayjs(scope.row.startTime).format("YYYY-MM-DD") }}
+            {{ formatTime(scope.row.startTime) }}
           </template>
         </el-table-column>
         <el-table-column prop="testTime" label="提测时间">
           <template #default="scope">
-            {{ dayjs(scope.row.testTime).format("YYYY-MM-DD") }}
+            {{ formatTime(scope.row.testTime) }}
           </template>
         </el-table-column>
         <el-table-column prop="completeTime" label="上线时间">
           <template #default="scope">
-            {{ dayjs(scope.row.completeTime).format("YYYY-MM-DD") }}
+            {{ formatTime(scope.row.completeTime) }}
           </template>
         </el-table-column>
         <el-table-column label="操作">
